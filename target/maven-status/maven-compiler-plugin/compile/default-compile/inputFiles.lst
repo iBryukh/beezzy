@@ -1,1 +1,8 @@
-E:\workspace\java_ee\JavaProject\src\main\java\com\springapp\mvc\HelloController.java
+E:\workspace\beezzy\src\main\java\beezyy\dao\impl\UserDaoImpl.java
+E:\workspace\beezzy\src\main\java\beezyy\dao\impl\DaoImpl.java
+E:\workspace\beezzy\src\main\java\beezyy\controller\HelloController.java
+E:\workspace\beezzy\src\main\java\beezyy\dao\UserDao.java
+E:\workspace\beezzy\src\main\java\beezyy\dao\Dao.java
+E:\workspace\beezzy\src\main\java\beezyy\domain\entities\UserEntity.java
+E:\workspace\beezzy\src\main\java\beezyy\services\UserService.java
+E:\workspace\beezzy\src\main\java\beezyy\services\impl\UserServiceImpl.java
