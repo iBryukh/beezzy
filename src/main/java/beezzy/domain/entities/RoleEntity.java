@@ -36,4 +36,12 @@ public class RoleEntity {
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<PermissionEntity> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<PermissionEntity> permissions) {
+        this.permissions = permissions;
+    }
 }
