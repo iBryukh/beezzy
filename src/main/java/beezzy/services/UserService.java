@@ -13,4 +13,6 @@ public interface UserService {
 
     List<UserEntity> get(int offset, int limit);
 
+    UserEntity getByEmail(String email);
+
 }

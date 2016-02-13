@@ -32,4 +32,12 @@ public class UserServiceImpl implements UserService{
     public List<UserEntity> get(int offset, int limit) {
         return userDao.get(offset, limit);
     }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public UserEntity getByEmail(String email) {
+        if(email == null || email.isEmpty())
+            return null;
+        return userDao.getByEmail(email);
+    }
 }

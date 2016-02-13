@@ -1,6 +1,7 @@
 package beezzy.dao.impl;
 
 import beezzy.dao.Dao;
+import java.util.Map;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -30,6 +31,16 @@ public class DaoImpl implements Dao {
         Query query = session.createQuery(q);
         query.setFirstResult(offset);
         query.setMaxResults(limit);
+        return (T) query.list();
+    }
+
+    @Override
+    public <T> T executeNamedQuery(Class tClass, String queryName, Map<String, Object> params) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.getNamedQuery(queryName);
+        for(String key : params.keySet()){
+            query.setParameter(key, params.get(key));
+        }
         return (T) query.list();
     }
 

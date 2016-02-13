@@ -20,10 +20,6 @@ public class HelloController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 		model.addAttribute("message", "Hello world!");
-
-        List<UserEntity> users = userService.get(0, 10);
-        users.size();
-
 		return "hello";
 	}
 

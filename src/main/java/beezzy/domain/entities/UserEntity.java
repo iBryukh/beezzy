@@ -7,7 +7,12 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "USERS")
+@NamedQueries({
+        @NamedQuery(name = UserEntity.GET_BY_EMAIL, query = "SELECT user FROM UserEntity user WHERE user.email = :email")
+})
 public class UserEntity {
+
+    public static final String GET_BY_EMAIL = "UserEntity.GET_BY_EMAIL";
 
     @Id
     @GeneratedValue

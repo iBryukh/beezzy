@@ -13,4 +13,6 @@ public interface UserDao {
 
     List<UserEntity> get(int offset, int limit);
 
+    UserEntity getByEmail(String email);
+
 }
