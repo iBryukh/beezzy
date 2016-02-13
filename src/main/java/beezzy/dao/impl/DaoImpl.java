@@ -1,13 +1,11 @@
-package beezyy.dao.impl;
+package beezzy.dao.impl;
 
-import beezyy.dao.Dao;
+import beezzy.dao.Dao;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 
 /**

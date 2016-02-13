@@ -1,8 +1,8 @@
-E:\workspace\beezzy\src\main\java\beezyy\dao\impl\UserDaoImpl.java
-E:\workspace\beezzy\src\main\java\beezyy\dao\impl\DaoImpl.java
-E:\workspace\beezzy\src\main\java\beezyy\controller\HelloController.java
-E:\workspace\beezzy\src\main\java\beezyy\dao\UserDao.java
-E:\workspace\beezzy\src\main\java\beezyy\dao\Dao.java
-E:\workspace\beezzy\src\main\java\beezyy\domain\entities\UserEntity.java
-E:\workspace\beezzy\src\main\java\beezyy\services\UserService.java
-E:\workspace\beezzy\src\main\java\beezyy\services\impl\UserServiceImpl.java
+E:\workspace\java_ee\beezzy\src\main\java\beezzy\domain\entities\UserEntity.java
+E:\workspace\java_ee\beezzy\src\main\java\beezzy\dao\impl\UserDaoImpl.java
+E:\workspace\java_ee\beezzy\src\main\java\beezzy\services\impl\UserServiceImpl.java
+E:\workspace\java_ee\beezzy\src\main\java\beezzy\controller\HelloController.java
+E:\workspace\java_ee\beezzy\src\main\java\beezzy\dao\impl\DaoImpl.java
+E:\workspace\java_ee\beezzy\src\main\java\beezzy\dao\Dao.java
+E:\workspace\java_ee\beezzy\src\main\java\beezzy\services\UserService.java
+E:\workspace\java_ee\beezzy\src\main\java\beezzy\dao\UserDao.java

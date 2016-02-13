@@ -1,6 +1,4 @@
-package beezyy.domain.entities;
-
-import org.hibernate.annotations.Generated;
+package beezzy.domain.entities;
 
 import javax.persistence.*;
 
