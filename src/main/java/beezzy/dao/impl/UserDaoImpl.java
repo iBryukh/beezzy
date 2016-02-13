@@ -1,7 +1,7 @@
-package beezyy.dao.impl;
+package beezzy.dao.impl;
 
-import beezyy.dao.UserDao;
-import beezyy.domain.entities.UserEntity;
+import beezzy.dao.UserDao;
+import beezzy.domain.entities.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

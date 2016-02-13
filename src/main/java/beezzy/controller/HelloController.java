@@ -1,7 +1,7 @@
-package beezyy.controller;
+package beezzy.controller;
 
-import beezyy.domain.entities.UserEntity;
-import beezyy.services.UserService;
+import beezzy.domain.entities.UserEntity;
+import beezzy.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

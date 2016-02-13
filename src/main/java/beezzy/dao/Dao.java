@@ -1,4 +1,4 @@
-package beezyy.dao;
+package beezzy.dao;
 
 /**
  * Created by oleh on 12.02.2016.

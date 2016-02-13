@@ -1,6 +1,6 @@
-package beezyy.services;
+package beezzy.services;
 
-import beezyy.domain.entities.UserEntity;
+import beezzy.domain.entities.UserEntity;
 
 import java.util.List;
 

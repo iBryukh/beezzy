@@ -1,6 +1,6 @@
-package beezyy.dao;
+package beezzy.dao;
 
-import beezyy.domain.entities.UserEntity;
+import beezzy.domain.entities.UserEntity;
 
 import java.util.List;
 

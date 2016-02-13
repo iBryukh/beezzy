@@ -1,8 +1,8 @@
-beezyy\services\impl\UserServiceImpl.class
-beezyy\domain\entities\UserEntity.class
-beezyy\dao\Dao.class
-beezyy\dao\UserDao.class
-beezyy\controller\HelloController.class
-beezyy\services\UserService.class
-beezyy\dao\impl\DaoImpl.class
-beezyy\dao\impl\UserDaoImpl.class
+beezzy\dao\Dao.class
+beezzy\dao\impl\DaoImpl.class
+beezzy\domain\entities\UserEntity.class
+beezzy\dao\UserDao.class
+beezzy\services\impl\UserServiceImpl.class
+beezzy\controller\HelloController.class
+beezzy\services\UserService.class
+beezzy\dao\impl\UserDaoImpl.class
