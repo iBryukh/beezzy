@@ -7,5 +7,7 @@
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
         <mapping class="beezzy.domain.entities.UserEntity" />
+        <mapping class="beezzy.domain.entities.RoleEntity" />
+        <mapping class="beezzy.domain.entities.PermissionEntity" />
     </session-factory>
 </hibernate-configuration>

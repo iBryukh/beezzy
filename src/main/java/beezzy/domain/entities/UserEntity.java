@@ -25,8 +25,9 @@ public class UserEntity {
     @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "ROLE_ID")
-    private int roleId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ROLE_ID")
+    private RoleEntity role;
 
     @Column(name = "ACTIVE")
     private boolean active;
@@ -55,12 +56,12 @@ public class UserEntity {
         this.password = password;
     }
 
-    public int getRoleId() {
-        return roleId;
+    public RoleEntity getRole() {
+        return role;
     }
 
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
+    public void setRole(RoleEntity role) {
+        this.role = role;
     }
 
     public boolean isActive() {
