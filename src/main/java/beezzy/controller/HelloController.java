@@ -4,11 +4,15 @@ import beezzy.domain.entities.RoleEntity;
 import beezzy.domain.entities.UserEntity;
 import beezzy.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -17,6 +21,12 @@ public class HelloController {
 
     @Autowired
     private UserService userService;
+
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "login";
+    }
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
@@ -44,5 +54,11 @@ public class HelloController {
         }
 
         return "redirect:/";
+    }
+
+    @RequestMapping("/admin")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public @ResponseBody String admin(){
+        return "admin";
     }
 }
