@@ -51,3 +51,4 @@ src/main/resources/rebel.xml
 target/beezzy.war
 *.class
 *.war
+*.war
