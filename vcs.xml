@@ -10,10 +10,6 @@
           <option name="url" value="git@github.com:denisweeks/JavaTask2.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
-        <UrlAndUserName>
-          <option name="url" value="git@github.com:AlyonaAlive/distedualive.git" />
-          <option name="userName" value="" />
-        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Users\Weeks\IdeaProjects" />
