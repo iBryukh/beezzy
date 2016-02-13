@@ -1,5 +1,6 @@
 package beezzy.controller;
 
+import beezzy.domain.entities.RoleEntity;
 import beezzy.domain.entities.UserEntity;
 import beezzy.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,10 @@ public class HelloController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 		model.addAttribute("message", "Hello world!");
+
+        List<UserEntity> users = userService.get(0, 10);
+        users.size();
+
 		return "hello";
 	}
 
@@ -29,6 +34,9 @@ public class HelloController {
         UserEntity user = new UserEntity();
         user.setEmail("email");
         user.setPassword("pass");
+        RoleEntity role = new RoleEntity();
+        role.setId(1);
+        user.setRole(role);
         try {
             userService.merge(user);
         } catch (Exception e){
