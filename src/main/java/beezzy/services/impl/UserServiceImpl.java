@@ -46,6 +46,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public UserEntity getAuthorised() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {

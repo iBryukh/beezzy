@@ -3,7 +3,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:p="http://www.springframework.org/schema/p" xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
@@ -38,31 +38,5 @@
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
         p:location="classpath:environment.properties" />
 
-    <security:global-method-security  secured-annotations="enabled" pre-post-annotations="enabled"/>
-
-    <security:http auto-config="true" use-expressions="true" pattern="/">
-        <!-- access denied page -->
-        <security:form-login login-page="/login" login-processing-url="/j_spring_security_check" password-parameter="j_password" username-parameter="j_username"/>
-        <security:anonymous username="guest" granted-authority="ROLE_ANONYMOUS" enabled="true"/>
-        <security:http-basic />
-        <security:remember-me token-validity-seconds="2419200" />
-    </security:http>
-
-    <security:jdbc-user-service id="userService"
-                       data-source-ref="dataSource"
-                       users-by-username-query=
-                               "select email as username, password, active from users where email=?"
-                       authorities-by-username-query=
-                               "SELECT users.email as username, permissions.name
-                                FROM permissions
-                                inner join role_to_permission on role_to_permission.permission_id=permissions.permission_id
-                                inner join users on users.role_id=role_to_permission.role_id
-                                where user.email=?;" />
-
-
-    <security:authentication-manager>
-        <security:authentication-provider user-service-ref="userService">
-            <security:password-encoder hash="md5" />
-        </security:authentication-provider>
-    </security:authentication-manager>
+    <import resource="security.xml" />
 </beans>
