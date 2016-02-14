@@ -4,6 +4,10 @@ import beezzy.dao.UserDao;
 import beezzy.domain.entities.UserEntity;
 import beezzy.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,5 +43,15 @@ public class UserServiceImpl implements UserService{
         if(email == null || email.isEmpty())
             return null;
         return userDao.getByEmail(email);
+    }
+
+    @Override
+    public UserEntity getAuthorised() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            UserDetails userDetails = (UserDetails) auth.getPrincipal();
+            return userDao.getByEmail(userDetails.getUsername());
+        }
+        return null;
     }
 }

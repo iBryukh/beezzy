@@ -15,4 +15,5 @@ public interface UserService {
 
     UserEntity getByEmail(String email);
 
+    UserEntity getAuthorised();
 }

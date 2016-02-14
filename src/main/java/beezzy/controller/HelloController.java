@@ -57,8 +57,14 @@ public class HelloController {
     }
 
     @RequestMapping("/admin")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("@Secure.isAdmin()")
     public @ResponseBody String admin(){
         return "admin";
+    }
+
+    @RequestMapping("/owner")
+    @PreAuthorize("@Secure.isOwner()")
+    public @ResponseBody String owner(){
+        return "owner";
     }
 }
