@@ -25,14 +25,14 @@ public class Secure{
     }
 
     public boolean isAdmin() {
-        return hasRole(Roles.ROLE_ADMIN.toString());
+        return hasRole(Roles.admin.toString());
     }
 
     public boolean isOwner() {
-        return hasRole(Roles.ROLE_OWNER.toString());
+        return hasRole(Roles.owner.toString());
     }
 
     public boolean isConsultant() {
-        return hasRole(Roles.ROLE_CONSULTANT.toString());
+        return hasRole(Roles.consultant.toString());
     }
 }

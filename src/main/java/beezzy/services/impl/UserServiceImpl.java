@@ -1,5 +1,7 @@
 package beezzy.services.impl;
 
+import beezzy.converters.BaseConverter;
+import beezzy.converters.Converter;
 import beezzy.dao.UserDao;
 import beezzy.domain.entities.UserEntity;
 import beezzy.services.UserService;
@@ -12,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by oleh on 12.02.2016.
@@ -22,6 +24,9 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private BaseConverter<UserEntity> userConverter;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
@@ -33,8 +38,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public List<UserEntity> get(int offset, int limit) {
-        return userDao.get(offset, limit);
+    public List<Map<String, Object>> get(Set<String> fields, int offset, int limit) {
+        return userConverter.convert(userDao.get(offset, limit), fields);
     }
 
     @Override

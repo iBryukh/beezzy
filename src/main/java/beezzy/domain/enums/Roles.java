@@ -5,8 +5,8 @@ package beezzy.domain.enums;
  */
 public enum Roles {
 
-    ROLE_ADMIN,
-    ROLE_OWNER,
-    ROLE_CONSULTANT;
+    admin,
+    owner,
+    consultant
 
 }

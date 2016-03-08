@@ -1,5 +1,7 @@
 package beezzy.domain.entities;
 
+import beezzy.domain.enums.Roles;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,7 +17,8 @@ public class RoleEntity {
     private int id;
 
     @Column(name = "ROLE_NAME")
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private Roles name;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "ROLE_TO_PERMISSION", joinColumns = @JoinColumn(name = "ROLE_ID"), inverseJoinColumns = @JoinColumn(name = "PERMISSION_ID"))
@@ -29,11 +32,11 @@ public class RoleEntity {
         this.id = id;
     }
 
-    public String getName() {
+    public Roles getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Roles name) {
         this.name = name;
     }
 

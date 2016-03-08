@@ -1,4 +1,4 @@
-package beezzy.controller;
+package beezzy.controller.pages;
 
 import beezzy.domain.entities.RoleEntity;
 import beezzy.domain.entities.UserEntity;
@@ -18,6 +18,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class HelloController {
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
