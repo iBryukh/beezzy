@@ -2,6 +2,7 @@ package beezzy.services.impl;
 
 import beezzy.domain.entities.PermissionEntity;
 import beezzy.domain.entities.UserEntity;
+import beezzy.domain.enums.Roles;
 import beezzy.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,9 +12,6 @@ import org.springframework.stereotype.Service;
  */
 @Service(value = "Secure")
 public class Secure{
-    public static final String ROLE_ADMIN = "ROLE_ADMIN";
-    public static final String ROLE_OWNER = "ROLE_OWNER";
-    public static final String ROLE_CONSULTANT = "ROLE_CONSULTANT";
     @Autowired
     private UserService userService;
 
@@ -27,14 +25,14 @@ public class Secure{
     }
 
     public boolean isAdmin() {
-        return hasRole(ROLE_ADMIN);
+        return hasRole(Roles.ROLE_ADMIN.toString());
     }
 
     public boolean isOwner() {
-        return hasRole(ROLE_OWNER);
+        return hasRole(Roles.ROLE_OWNER.toString());
     }
 
     public boolean isConsultant() {
-        return hasRole(ROLE_CONSULTANT);
+        return hasRole(Roles.ROLE_CONSULTANT.toString());
     }
 }

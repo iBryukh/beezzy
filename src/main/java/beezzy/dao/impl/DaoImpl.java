@@ -26,19 +26,7 @@ public class DaoImpl implements Dao {
 
     @Override
     public <T> T merge(T object){
-        Session session = sessionFactory.getCurrentSession();
-
-
-        ShopEntity shop = null;
-        Query query = session.createQuery("SELECT category FROM ShopEntity category WHERE category.id=2");
-        List l = query.list();
-        if(l != null && l.size() > 0) {
-            shop = (ShopEntity)l.get(0);
-        }
-
-        boolean b = shop == null;
-
-        return (T)session.merge(object);
+        return (T)sessionFactory.getCurrentSession().merge(object);
     }
 
     @Override

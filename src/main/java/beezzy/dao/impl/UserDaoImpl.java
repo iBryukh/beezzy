@@ -15,22 +15,22 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
 
     @Autowired
-    private DaoImpl userDao;
+    private DaoImpl dao;
 
 
     @Override
     public UserEntity merge(UserEntity user) {
-        return userDao.merge(user);
+        return dao.merge(user);
     }
 
     @Override
     public List<UserEntity> get(int offset, int limit) {
-        return userDao.get(UserEntity.class, offset, limit);
+        return dao.get(UserEntity.class, offset, limit);
     }
 
     @Override
     public UserEntity getByEmail(final String email) {
-        List<UserEntity> list = userDao.executeNamedQuery(
+        List<UserEntity> list = dao.executeNamedQuery(
                 null,
                 UserEntity.GET_BY_EMAIL,
                 new HashMap<String, Object>(){{

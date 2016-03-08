@@ -19,10 +19,6 @@ import java.util.List;
 @RequestMapping("/")
 public class HelloController {
 
-    @Autowired
-    private UserService userService;
-
-
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         return "login";
@@ -32,29 +28,8 @@ public class HelloController {
 	public String printWelcome(ModelMap model) {
 		model.addAttribute("message", "Hello world!");
 
-        List<UserEntity> users = userService.get(0, 10);
-        users.size();
-
 		return "hello";
 	}
-
-    @RequestMapping("/add")
-    public String add(){
-
-        UserEntity user = new UserEntity();
-        user.setEmail("email");
-        user.setPassword("pass");
-        RoleEntity role = new RoleEntity();
-        role.setId(1);
-        user.setRole(role);
-        try {
-            userService.merge(user);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
-        return "redirect:/";
-    }
 
     @RequestMapping("/admin")
     @PreAuthorize("@Secure.isAdmin()")
@@ -67,4 +42,5 @@ public class HelloController {
     public @ResponseBody String owner(){
         return "owner";
     }
+
 }
