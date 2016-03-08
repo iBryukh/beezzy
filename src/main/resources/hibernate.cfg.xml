@@ -9,5 +9,9 @@
         <mapping class="beezzy.domain.entities.UserEntity" />
         <mapping class="beezzy.domain.entities.RoleEntity" />
         <mapping class="beezzy.domain.entities.PermissionEntity" />
+        <mapping class="beezzy.domain.entities.CategoryEntity" />
+        <mapping class="beezzy.domain.entities.ShopEntity" />
+        <mapping class="beezzy.domain.entities.GoodsEntity" />
+        <mapping class="beezzy.domain.entities.VarietyEntity" />
     </session-factory>
 </hibernate-configuration>

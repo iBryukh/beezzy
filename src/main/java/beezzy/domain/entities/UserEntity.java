@@ -1,6 +1,7 @@
 package beezzy.domain.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by oleh on 12.02.2016.
@@ -31,6 +32,9 @@ public class UserEntity {
 
     @Column(name = "ACTIVE")
     private boolean active;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "owner")
+    private List<ShopEntity> shops;
 
     public int getId() {
         return id;
@@ -70,5 +74,13 @@ public class UserEntity {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public List<ShopEntity> getShops() {
+        return shops;
+    }
+
+    public void setShops(List<ShopEntity> shops) {
+        this.shops = shops;
     }
 }
