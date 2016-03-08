@@ -1,7 +1,6 @@
 package beezzy.services.impl;
 
 import beezzy.converters.BaseConverter;
-import beezzy.converters.Converter;
 import beezzy.dao.UserDao;
 import beezzy.domain.entities.UserEntity;
 import beezzy.services.UserService;

@@ -8,7 +8,9 @@ import java.util.*;
 /**
  * Created by oleh on 08.03.2016.
  */
-public abstract class BaseConverter<T> implements Converter<T> {
+public abstract class BaseConverter<T> {
+
+    public abstract Map<String, Object> convert(T objects, final Set<String> fields);
 
     public List<Map<String, Object>> convert(List<T> objects, final Set<String> fields) {
         return Lists.transform(objects, new Function<T, Map<String, Object>>(){
