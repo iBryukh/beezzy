@@ -32,10 +32,10 @@
     </bean>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        <property name="url" value="jdbc:postgresql://ec2-54-195-252-202.eu-west-1.compute.amazonaws.com:5432/d28090gv070o7u?sslmode=require&amp;ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
-        <property name="username" value="pzdbzlqsackmgc"/>
-        <property name="password" value="w4FiNwbIpHn6GTLzWueJFdNmG6"/>
-        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="jdbc:mysql://eu-cdbr-azure-north-d.cloudapp.net:3306/beezzy?sslmode=require&amp;ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
+        <property name="username" value="b0e487139f716f"/>
+        <property name="password" value="04110270"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
     </bean>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
