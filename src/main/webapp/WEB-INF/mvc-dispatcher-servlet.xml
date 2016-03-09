@@ -14,29 +14,43 @@
     <mvc:resources mapping="/resources/**" location="/resources/" />
     <context:component-scan base-package="beezzy"/>
 
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-            p:prefix="/WEB-INF/pages/"
-            p:suffix=".jsp" />
-
-    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close"
-        p:driverClassName="${database.driver}"
-        p:url="${database.url}"
-        p:username="${database.username}"
-        p:password="${database.password}"/>
-
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
-          p:configLocation="classpath:hibernate.cfg.xml" >
-        <property name="dataSource"  ref="dataSource" />
-    </bean>
-
-    <tx:annotation-driven />
-    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager" >
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
-
-    <bean id="placeholderConfigurer"
-          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-        p:location="classpath:environment.properties" />
-
     <import resource="security.xml" />
+
+    <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/pages/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <bean class="java.net.URI" id="dbUrl">
+        <constructor-arg value="postgres://@ec2-54-195-252-202.eu-west-1.compute.amazonaws.com:5432/d28090gv070o7u?sslmode=require"/>
+    </bean>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="url" value="jdbc:postgresql://ec2-54-195-252-202.eu-west-1.compute.amazonaws.com:5432/d28090gv070o7u?sslmode=require&amp;ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
+        <property name="username" value="pzdbzlqsackmgc"/>
+        <property name="password" value="w4FiNwbIpHn6GTLzWueJFdNmG6"/>
+        <property name="driverClassName" value="org.postgresql.Driver" />
+    </bean>
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="persistenceUnitName" value="beezzy-persistence"/>
+        <property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+    </bean>
+
 </beans>

@@ -5,14 +5,11 @@ import beezzy.dao.Dao;
 import java.util.List;
 import java.util.Map;
 
-import beezzy.domain.entities.ShopEntity;
-import beezzy.domain.entities.UserEntity;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 
 /**
@@ -21,32 +18,30 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class DaoImpl implements Dao {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    @PersistenceContext
+    EntityManager em;
 
     @Override
     public <T> T merge(T object){
-        return (T)sessionFactory.getCurrentSession().merge(object);
+        return (T)em.merge(object);
     }
 
     @Override
-    public <T> T get(final Class tClass, final int offset, final int limit) {
-        Session session = sessionFactory.getCurrentSession();
+    public <T> List<T> get(final Class tClass, final int offset, final int limit) {
         String q = "SELECT o FROM " + tClass.getName() + " o";
-        Query query = session.createQuery(q);
+        Query query = em.createQuery(q);
         query.setFirstResult(offset);
         query.setMaxResults(limit);
-        return (T) query.list();
+        return (List<T>) query.getResultList();
     }
 
     @Override
     public <T> T executeNamedQuery(Class tClass, String queryName, Map<String, Object> params) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.getNamedQuery(queryName);
+        Query query = em.createNamedQuery(queryName);
         for(String key : params.keySet()){
             query.setParameter(key, params.get(key));
         }
-        return (T) query.list();
+        return (T) query.getResultList();
     }
 
 }

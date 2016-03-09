@@ -1,5 +1,6 @@
 package beezzy.dao;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -9,7 +10,7 @@ public interface Dao {
 
     <T> T merge(T object);
 
-    <T> T get(Class tClass, int offset, int limit);
+    <T> List<T> get(Class tClass, int offset, int limit);
 
     <T> T executeNamedQuery(Class tClass, String queryName, Map<String, Object> params);
 
