@@ -10,9 +10,9 @@
     <properties>
         <java-version>1.7</java-version>
         <spring.version>4.0.0.RELEASE</spring.version>
-        <database.url>jdbc:mysql://localhost:3306</database.url>
-        <database.user>root</database.user>
-        <database.pass>root</database.pass>
+        <database.url>jdbc:mysql://eu-cdbr-azure-north-d.cloudapp.net:3306</database.url>
+        <database.user>b0e487139f716f</database.user>
+        <database.pass>04110270</database.pass>
         <database.schema>beezzy</database.schema>
     </properties>
 
