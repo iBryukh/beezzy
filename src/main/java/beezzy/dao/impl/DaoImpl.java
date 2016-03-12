@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 
 /**
@@ -27,21 +28,68 @@ public class DaoImpl implements Dao {
     }
 
     @Override
-    public <T> List<T> get(final Class tClass, final int offset, final int limit) {
-        String q = "SELECT o FROM " + tClass.getName() + " o";
-        Query query = em.createQuery(q);
-        query.setFirstResult(offset);
-        query.setMaxResults(limit);
-        return (List<T>) query.getResultList();
+    public <T> List<T> list_executeNamedQueryParams(String nameQuery, Map<String, Object> params, int offset, int limit){
+        Query query = em.createNamedQuery(nameQuery);
+        return list_executeListQuery(query, params, limit, offset);
     }
 
     @Override
-    public <T> T executeNamedQuery(Class tClass, String queryName, Map<String, Object> params) {
-        Query query = em.createNamedQuery(queryName);
-        for(String key : params.keySet()){
-            query.setParameter(key, params.get(key));
+    public <T> List<T> list_executeNativeQueryParams(String nativeQuery, Map<String, Object> params, int offset, int limit){
+        Query query = em.createNativeQuery(nativeQuery);
+        return list_executeListQuery(query, params, limit, offset);
+    }
+
+    @Override
+    public <T> T single_executeNameQueryParams(String nameQuery, Map<String, Object> params){
+        Query query = em.createNamedQuery(nameQuery);
+        return single_executeSingleQuery(query, params);
+    }
+
+    @Override
+    public <T> T single_executeNativeQueryParams(String nativeQuery, Map<String, Object> params, Class tClass){
+        Query query = em.createNativeQuery(nativeQuery);
+        return single_executeSingleQuery(query, params);
+    }
+
+    @Override
+    public void executeUpdateNamed(String nameQuery, Map<String, Object> params){
+        Query query = em.createNamedQuery(nameQuery);
+        executeUpdate(query, params);
+    }
+
+    @Override
+    public void executeUpdateNative(String nativeQuery, Map<String, Object> params){
+        Query query = em.createNativeQuery(nativeQuery);
+        executeUpdate(query, params);
+    }
+
+    private <T> List<T> list_executeListQuery(Query query, Map<String, Object> params, int limit, int offset){
+        if(params != null){
+            for(String key : params.keySet())
+                query.setParameter(key, params.get(key));
         }
-        return (T) query.getResultList();
+        if(limit > 0)
+            query.setMaxResults(limit);
+        if(offset > 0)
+            query.setFirstResult(offset);
+        return query.getResultList();
+    }
+
+    private <T> T single_executeSingleQuery(Query query, Map<String, Object> params){
+        if(params != null){
+            for(String key : params.keySet())
+                query.setParameter(key, params.get(key));
+        }
+        return (T)query.getSingleResult();
+    }
+
+    private void executeUpdate(Query query, Map<String, Object> params){
+        if(params != null){
+            for(String key : params.keySet()){
+                query.setParameter(key, params.get(key));
+            }
+        }
+        query.executeUpdate();
     }
 
 }
