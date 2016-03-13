@@ -25,19 +25,22 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<UserEntity> get(int offset, int limit) {
-        return dao.get(UserEntity.class, offset, limit);
+        return dao.list_executeNamedQueryParams(
+                UserEntity.GET_ALL,
+                null,
+                offset,
+                limit
+        );
     }
 
     @Override
     public UserEntity getByEmail(final String email) {
-        List<UserEntity> list = dao.executeNamedQuery(
-                null,
+        return dao.single_executeNameQueryParams(
                 UserEntity.GET_BY_EMAIL,
                 new HashMap<String, Object>(){{
                     put("email", email);
                 }}
         );
-        return list == null || list.isEmpty() ? null : list.get(0);
     }
 
 

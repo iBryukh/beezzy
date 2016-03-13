@@ -9,11 +9,13 @@ import java.util.List;
 @Entity
 @Table(name = "USERS")
 @NamedQueries({
+        @NamedQuery(name = UserEntity.GET_ALL, query = "SELECT u FROM UserEntity u"),
         @NamedQuery(name = UserEntity.GET_BY_EMAIL, query = "SELECT user FROM UserEntity user WHERE user.email = :email")
 })
 public class UserEntity {
 
     public static final String GET_BY_EMAIL = "UserEntity.GET_BY_EMAIL";
+    public static final String GET_ALL = "UserEntity.GET_ALL";
 
     @Id
     @GeneratedValue

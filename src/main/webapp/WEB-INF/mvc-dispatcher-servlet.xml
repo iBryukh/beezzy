@@ -28,9 +28,9 @@
     </bean>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        <property name="url" value="jdbc:mysql://eu-cdbr-azure-north-d.cloudapp.net:3306/beezzy?sslmode=require&amp;ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
-        <property name="username" value="b0e487139f716f"/>
-        <property name="password" value="04110270"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/beezzy"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
     </bean>
 
