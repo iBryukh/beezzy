@@ -1,5 +1,7 @@
 package beezzy.domain.entities;
 
+import beezzy.domain.enums.Permissions;
+
 import javax.persistence.*;
 
 /**
@@ -13,8 +15,9 @@ public class PermissionEntity {
     @Column(name = "ID")
     private int id;
 
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "PERMISSION_NAME")
-    private String name;
+    private Permissions name;
 
     public int getId() {
         return id;
@@ -24,11 +27,11 @@ public class PermissionEntity {
         this.id = id;
     }
 
-    public String getName() {
+    public Permissions getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Permissions name) {
         this.name = name;
     }
 }
