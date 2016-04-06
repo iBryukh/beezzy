@@ -16,8 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtUtil {
 
-    @Value("{jwt.secret}")
-    private String secret;
+    private String secret = "beezzy";
 
 
     public User parse(String token){
