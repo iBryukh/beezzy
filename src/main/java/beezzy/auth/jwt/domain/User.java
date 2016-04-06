@@ -18,7 +18,7 @@ public class User {
 
     private String email;
 
-    private RoleEntity role;
+    private Roles role;
 
     public String getEmail() {
         return email;
@@ -36,11 +36,11 @@ public class User {
         this.id = id;
     }
 
-    public RoleEntity getRole() {
+    public Roles getRole() {
         return role;
     }
 
-    public void setRole(RoleEntity role) {
+    public void setRole(Roles role) {
         this.role = role;
     }
 }

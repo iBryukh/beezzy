@@ -3,6 +3,7 @@ package beezzy.auth.jwt;
 import beezzy.auth.jwt.domain.User;
 import beezzy.domain.entities.RoleEntity;
 import beezzy.domain.entities.UserEntity;
+import beezzy.domain.enums.Roles;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -31,10 +32,7 @@ public class JwtUtil {
             User user = new User();
             user.setId(Integer.valueOf(body.get(ID).toString()));
             user.setEmail(body.get(EMAIL).toString());
-
-            ObjectMapper mapper = new ObjectMapper();
-            RoleEntity roleEntity = mapper.convertValue(body.get(ROLE), RoleEntity.class);
-            user.setRole(roleEntity);
+            user.setRole(Roles.valueOf(body.get(ROLE).toString()));
 
             return user;
         } catch (Exception e){
@@ -47,7 +45,7 @@ public class JwtUtil {
         Claims claims = Jwts.claims().setSubject(user.getEmail());
         claims.put(ID, user.getId()+"");
         claims.put(EMAIL, user.getEmail());
-        claims.put(ROLE, user.getRole());
+        claims.put(ROLE, user.getRole().getName());
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -59,4 +57,6 @@ public class JwtUtil {
     private static final String ID = "id";
     private static final String EMAIL = "email";
     private static final String ROLE = "role";
+
+    public static final String ACCESS_TOKEN = "access_token";
 }
