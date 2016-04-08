@@ -42,6 +42,24 @@
 <script>
     $(document).ready(function(){
         $('#home').addClass('active');
+
+        $.ajax({
+            url: '/api/users/signin',
+            type: 'POST',
+            data: JSON.stringify({
+                email: 'ivano.polomani@gmail.com',
+                password: 'wergre'
+            }),
+            beforeSend: function(xhr){
+                xhr.setRequestHeader('Content-Type', 'application/json');
+            },
+            success: function(response){
+                console.log(response);
+            },
+            error: function(xhr){
+                console.log(xhr);
+            }
+        })
     });
 </script>
 </body>

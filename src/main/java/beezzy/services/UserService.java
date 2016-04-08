@@ -1,6 +1,7 @@
 package beezzy.services;
 
 import beezzy.domain.entities.UserEntity;
+import beezzy.domain.request.user.UserAuth;
 
 import java.util.*;
 
@@ -16,4 +17,6 @@ public interface UserService {
     UserEntity getByEmail(String email);
 
     UserEntity getAuthorised();
+
+    Map<String, Object> signin(UserAuth userAuth);
 }

@@ -1,8 +1,10 @@
 package beezzy.services.impl;
 
+import beezzy.auth.jwt.JwtUtil;
 import beezzy.converters.BaseConverter;
 import beezzy.dao.UserDao;
 import beezzy.domain.entities.UserEntity;
+import beezzy.domain.request.user.UserAuth;
 import beezzy.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -26,6 +28,9 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private BaseConverter<UserEntity> userConverter;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
@@ -58,5 +63,16 @@ public class UserServiceImpl implements UserService{
             return userDao.getByEmail(userDetails.getUsername());
         }
         return null;
+    }
+
+    @Override
+    public Map<String, Object> signin(UserAuth userAuth) {
+        UserEntity user = userDao.getByEmail(userAuth.getEmail());
+        if(user == null){
+            return null;
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put(JwtUtil.ACCESS_TOKEN, jwtUtil.generate(user));
+        return map;
     }
 }

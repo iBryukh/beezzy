@@ -1,13 +1,14 @@
 package beezzy.controller.rest;
 
+import beezzy.auth.aop.Auth;
+import beezzy.domain.enums.Roles;
+import beezzy.domain.request.user.UserAuth;
 import beezzy.domain.response.Response;
 import beezzy.services.UserService;
+import beezzy.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -21,6 +22,7 @@ public class UserApiController {
     @Autowired
     private UserService userService;
 
+    @Auth(required = false, roles = {Roles.owner, Roles.admin, Roles.consultant})
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public @ResponseBody Response<List<Map<String, Object>>> getUsers(
             @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
@@ -29,6 +31,14 @@ public class UserApiController {
     ){
         Response<List<Map<String, Object>>> response = new Response<List<Map<String, Object>>>();
         response.setResult(userService.get(fields, offset, limit));
+        return response;
+    }
+
+
+    @RequestMapping(value = "/signin", method = RequestMethod.POST)
+    public @ResponseBody Response<Map<String, Object>> signin(@RequestBody UserAuth userAuth){
+        Response<Map<String, Object>> response = new Response<Map<String, Object>>();
+        response.setResult(userService.signin(userAuth));
         return response;
     }
 
