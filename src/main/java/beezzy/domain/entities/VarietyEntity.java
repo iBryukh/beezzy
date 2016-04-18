@@ -5,8 +5,17 @@ import javax.persistence.*;
 /**
  * Created by oleh on 08.03.2016.
  */
+@NamedQueries({
+        @NamedQuery(name = VarietyEntity.GET_ALL, query = "SELECT v FROM VarietyEntity v"),
+        @NamedQuery(name = VarietyEntity.GET_BY_ID, query = "SELECT variety FROM VarietyEntity variety WHERE variety.id = :id"),
+        @NamedQuery(name = VarietyEntity.DELETE_BY_ID, query = "DELETE FROM VarietyEntity variety WHERE variety.id = :id")
+})
+
 @Entity
 public class VarietyEntity {
+    public static final String GET_ALL = "VarietyEntity.GET_ALL";
+    public static final String GET_BY_ID = "VarietyEntity.GET_BY_ID";
+    public static final String DELETE_BY_ID = "VarietyEntity.DELETE_BY_ID";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

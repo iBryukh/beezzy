@@ -8,7 +8,17 @@ import java.util.List;
  */
 @Entity
 @Table(name = "CATEGORY")
+@NamedQueries({
+        @NamedQuery(name = CategoryEntity.GET_BY_SHOP, query = "SELECT category FROM CategoryEntity category WHERE category.shop.id = :id"),
+        @NamedQuery(name = CategoryEntity.GET_ALL, query = "SELECT c FROM CategoryEntity u"),
+        @NamedQuery(name = CategoryEntity.GET_BY_ID, query = "SELECT category FROM CategoryEntity category WHERE category.id = :id"),
+        @NamedQuery(name = CategoryEntity.DELETE_BY_ID, query = "DELETE FROM CategoryEntity category WHERE category.id = :id")
+})
 public class CategoryEntity {
+    public static final String GET_BY_SHOP = "CategoryEntity.GET_BY_SHOP";
+    public static final String GET_ALL = "CategoryEntity.GET_ALL";
+    public static final String GET_BY_ID = "CategoryEntity.GET_BY_ID";
+    public static final String DELETE_BY_ID = "CategoryEntity.DELETE_BY_ID";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

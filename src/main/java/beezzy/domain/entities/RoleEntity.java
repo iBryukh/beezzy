@@ -8,10 +8,18 @@ import java.util.List;
 /**
  * Created by oleh on 13.02.2016.
  */
+@NamedQueries({
+        @NamedQuery(name = RoleEntity.GET_ALL, query = "SELECT r FROM RoleEntity r"),
+        @NamedQuery(name = RoleEntity.GET_BY_ID, query = "SELECT role FROM RoleEntity role WHERE role.id = :id"),
+        @NamedQuery(name = RoleEntity.DELETE_BY_ID, query = "DELETE FROM RoleEntity role WHERE role.id = :id")
+})
 @Entity
 @Table(name = "ROLES")
 public class RoleEntity {
 
+    public static final String GET_ALL = "RoleEntity.GET_ALL";
+    public static final String GET_BY_ID = "RoleEntity.GET_BY_ID";
+    public static final String DELETE_BY_ID = "RoleEntity.DELETE_BY_ID";
     @Id
     @Column(name = "ID")
     private int id;

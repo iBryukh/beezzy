@@ -6,9 +6,18 @@ import java.util.List;
 /**
  * Created by oleh on 13.02.2016.
  */
+
+@NamedQueries({
+        @NamedQuery(name = ShopEntity.GET_ALL, query = "SELECT sh FROM ShopEntity sh"),
+        @NamedQuery(name = ShopEntity.GET_BY_ID, query = "SELECT role FROM ShopEntity shop WHERE shop.id = :id"),
+        @NamedQuery(name = ShopEntity.DELETE_BY_ID, query = "DELETE FROM ShopEntity shop WHERE shop.id = :id")
+})
 @Entity
 @Table(name = "SHOPS")
 public class ShopEntity {
+    public static final String GET_ALL = "ShopEntity.GET_ALL";
+    public static final String GET_BY_ID = "ShopEntity.GET_BY_ID";
+    public static final String DELETE_BY_ID = "ShopEntity.DELETE_BY_ID";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

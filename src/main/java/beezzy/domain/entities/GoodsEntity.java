@@ -7,7 +7,16 @@ import java.util.List;
  * Created by oleh on 08.03.2016.
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(name = GoodsEntity.GET_ALL, query = "SELECT g FROM GoodsEntity g"),
+        @NamedQuery(name = GoodsEntity.GET_BY_ID, query = "SELECT goods FROM GoodsEntity goods WHERE goods.id = :id"),
+        @NamedQuery(name = GoodsEntity.DELETE_BY_ID, query = "DELETE FROM GoodsEntity goods WHERE goods.id = :id")
+})
 public class GoodsEntity {
+
+    public static final String GET_ALL = "GoodsEntity.GET_ALL";
+    public static final String GET_BY_ID = "GoodsEntity.GET_BY_ID";
+    public static final String DELETE_BY_ID = "GoodsEntity.DELETE_BY_ID";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
