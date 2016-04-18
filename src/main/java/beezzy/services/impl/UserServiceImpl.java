@@ -5,6 +5,9 @@ import beezzy.converters.BaseConverter;
 import beezzy.dao.UserDao;
 import beezzy.domain.entities.UserEntity;
 import beezzy.domain.request.user.UserAuth;
+import beezzy.exceptions.ForbiddenException;
+import beezzy.exceptions.WrongEmailException;
+import beezzy.exceptions.WrongPasswordException;
 import beezzy.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -66,10 +69,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Map<String, Object> signin(UserAuth userAuth) {
+    public Map<String, Object> signin(UserAuth userAuth) throws WrongPasswordException, WrongEmailException {
         UserEntity user = userDao.getByEmail(userAuth.getEmail());
         if(user == null){
-            return null;
+            throw new WrongEmailException();
+        }
+        if(!user.getPassword().equals(userAuth.getPassword())){
+            throw new WrongPasswordException();
         }
         Map<String, Object> map = new HashMap<>();
         map.put(JwtUtil.ACCESS_TOKEN, jwtUtil.generate(user));

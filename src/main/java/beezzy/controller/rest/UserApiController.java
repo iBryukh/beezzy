@@ -4,6 +4,9 @@ import beezzy.auth.aop.Auth;
 import beezzy.domain.enums.Roles;
 import beezzy.domain.request.user.UserAuth;
 import beezzy.domain.response.Response;
+import beezzy.exceptions.ForbiddenException;
+import beezzy.exceptions.WrongEmailException;
+import beezzy.exceptions.WrongPasswordException;
 import beezzy.services.UserService;
 import beezzy.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +39,7 @@ public class UserApiController {
 
 
     @RequestMapping(value = "/signin", method = RequestMethod.POST)
-    public @ResponseBody Response<Map<String, Object>> signin(@RequestBody UserAuth userAuth){
+    public @ResponseBody Response<Map<String, Object>> signin(@RequestBody UserAuth userAuth) throws WrongPasswordException, WrongEmailException {
         Response<Map<String, Object>> response = new Response<Map<String, Object>>();
         response.setResult(userService.signin(userAuth));
         return response;
