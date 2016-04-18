@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name = "CATEGORY")
 @NamedQueries({
         @NamedQuery(name = CategoryEntity.GET_BY_SHOP, query = "SELECT category FROM CategoryEntity category WHERE category.shop.id = :id"),
-        @NamedQuery(name = CategoryEntity.GET_ALL, query = "SELECT c FROM CategoryEntity u"),
+        @NamedQuery(name = CategoryEntity.GET_ALL, query = "SELECT c FROM CategoryEntity c"),
         @NamedQuery(name = CategoryEntity.GET_BY_ID, query = "SELECT category FROM CategoryEntity category WHERE category.id = :id"),
         @NamedQuery(name = CategoryEntity.DELETE_BY_ID, query = "DELETE FROM CategoryEntity category WHERE category.id = :id")
 })

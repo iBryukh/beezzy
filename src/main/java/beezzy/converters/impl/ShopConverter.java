@@ -4,6 +4,7 @@ import beezzy.converters.BaseConverter;
 import beezzy.domain.entities.GoodsEntity;
 import beezzy.domain.entities.ShopEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import static beezzy.converters.Fields.Shop.*;
 
@@ -17,6 +18,7 @@ import java.util.Set;
 /**
  * Created by HP_PRO on 18.04.2016.
  */
+@Component
 public class ShopConverter extends BaseConverter<ShopEntity>{
 
     @Autowired
