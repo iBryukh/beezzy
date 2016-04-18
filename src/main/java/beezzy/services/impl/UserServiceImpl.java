@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService{
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public UserEntity getByEmail(String email) {
-        if(email == null || email.isEmpty())
+        if (email == null || email.isEmpty())
             return null;
         return userDao.getByEmail(email);
     }
@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService{
         if(user == null){
             throw new WrongEmailException();
         }
-        if(!user.getPassword().equals(userAuth.getPassword())){
+        if(!user.getPassword().equals(userAuth.getPassword())) {
             throw new WrongPasswordException();
         }
         Map<String, Object> map = new HashMap<>();

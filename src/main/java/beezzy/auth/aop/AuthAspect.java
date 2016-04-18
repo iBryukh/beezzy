@@ -40,6 +40,7 @@ public class AuthAspect {
     private void before(Auth auth) throws UnauthorizedException, ForbiddenException {
         String token = request.getParameter(JwtUtil.ACCESS_TOKEN);
         User user = jwtUtil.parse(token);
+        sessionUtils.setUser(user);
 
         if(auth.required()){
             if(user == null){
