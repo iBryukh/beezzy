@@ -16,7 +16,5 @@ public interface UserService {
 
     UserEntity getByEmail(String email);
 
-    UserEntity getAuthorised();
-
     Map<String, Object> signin(UserAuth userAuth);
 }

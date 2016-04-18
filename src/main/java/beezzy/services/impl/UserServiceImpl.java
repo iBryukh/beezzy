@@ -49,26 +49,15 @@ public class UserServiceImpl implements UserService{
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public UserEntity getByEmail(String email) {
-        if(email == null || email.isEmpty())
+        if (email == null || email.isEmpty())
             return null;
         return userDao.getByEmail(email);
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
-    public UserEntity getAuthorised() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (!(auth instanceof AnonymousAuthenticationToken)) {
-            UserDetails userDetails = (UserDetails) auth.getPrincipal();
-            return userDao.getByEmail(userDetails.getUsername());
-        }
-        return null;
-    }
-
-    @Override
     public Map<String, Object> signin(UserAuth userAuth) {
         UserEntity user = userDao.getByEmail(userAuth.getEmail());
-        if(user == null){
+        if(user == null && user.getPassword().equals(userAuth.getPassword())){
             return null;
         }
         Map<String, Object> map = new HashMap<>();
