@@ -10,12 +10,16 @@ import java.util.List;
 @Table(name = "USERS")
 @NamedQueries({
         @NamedQuery(name = UserEntity.GET_ALL, query = "SELECT u FROM UserEntity u"),
-        @NamedQuery(name = UserEntity.GET_BY_EMAIL, query = "SELECT user FROM UserEntity user WHERE user.email = :email")
+        @NamedQuery(name = UserEntity.GET_BY_EMAIL, query = "SELECT user FROM UserEntity user WHERE user.email = :email"),
+        @NamedQuery(name = UserEntity.GET_BY_ID, query = "SELECT user FROM UserEntity user WHERE user.id = :id"),
+        @NamedQuery(name = UserEntity.DELETE_BY_ID, query = "DELETE FROM UserEntity user WHERE user.id = :id")
 })
 public class UserEntity {
 
     public static final String GET_BY_EMAIL = "UserEntity.GET_BY_EMAIL";
     public static final String GET_ALL = "UserEntity.GET_ALL";
+    public static final String GET_BY_ID = "UserEntity.GET_BY_ID";
+    public static final String DELETE_BY_ID = "UserEntity.DELETE_BY_ID";
 
     @Id
     @GeneratedValue

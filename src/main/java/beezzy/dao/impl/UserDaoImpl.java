@@ -43,5 +43,15 @@ public class UserDaoImpl implements UserDao {
         );
     }
 
+    @Override
+    public void delete(final int id) {
+        dao.executeUpdateNamed(
+                UserEntity.DELETE_BY_ID,
+                new HashMap<String, Object>(){{
+                    put("id", id);
+                }}
+        );
+    }
+
 
 }

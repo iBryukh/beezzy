@@ -15,4 +15,6 @@ public interface UserDao {
 
     UserEntity getByEmail(String email);
 
+    public void delete(final int id);
+
 }

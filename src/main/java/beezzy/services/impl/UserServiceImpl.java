@@ -58,17 +58,6 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
-    public UserEntity getAuthorised() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (!(auth instanceof AnonymousAuthenticationToken)) {
-            UserDetails userDetails = (UserDetails) auth.getPrincipal();
-            return userDao.getByEmail(userDetails.getUsername());
-        }
-        return null;
-    }
-
-    @Override
     public Map<String, Object> signin(UserAuth userAuth) throws WrongPasswordException, WrongEmailException {
         UserEntity user = userDao.getByEmail(userAuth.getEmail());
         if(user == null){
