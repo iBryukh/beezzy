@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface ShopDao {
 
-    ShopEntity merge(ShopEntity user);
+    ShopEntity merge(ShopEntity shop);
 
     List<ShopEntity> get(int offset, int limit);
 
