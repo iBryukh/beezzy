@@ -12,14 +12,14 @@ public class Fields {
         public static final String ACTIVE = "active";
         public static final String SHOPS = "shops";
     }
-    public static final class CategoryEntity{
+    public static final class Category{
         public static final String ID = "id";
         public static final String NAME = "name";
         public static final String PARENT = "parent";
         public static final String CHILDREN = "children";
         public static final String SHOP = "shop";
     }
-    public static final class GoodsEntity{
+    public static final class Goods{
         public static final String ID = "id";
         public static final String NAME = "name";
         public static final String DESCRIPTION = "description";
@@ -28,24 +28,24 @@ public class Fields {
         public static final String VARIETIES = "varieties";
 
     }
-    public static final class PermissionEntity{
+    public static final class Permission{
         public static final String ID = "id";
-        public static final String PERMISSIONS = "permissions";
+        public static final String NAME = "name";
     }
-    public static final class RoleEntity{
+    public static final class Role{
         public static final String ID = "id";
-        public static final String ROLES = "roles";
+        public static final String NAME = "name";
         public static final String PERMISSIONS = "permissions";
 
     }
-    public static final class ShopEntity{
+    public static final class Shop{
         public static final String ID = "id";
         public static final String NAME = "name";
         public static final String DESCRIPTION = "description";
         public static final String OWNER = "owner";
         public static final String GOODS = "goods";
     }
-    public static final class VarietyEntity{
+    public static final class Variety{
         public static final String ID = "id";
         public static final String DESCRIPTION = "description";
         public static final String AMOUNT = "amount";
