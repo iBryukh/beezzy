@@ -80,7 +80,10 @@ public class DaoImpl implements Dao {
             for(String key : params.keySet())
                 query.setParameter(key, params.get(key));
         }
-        return (T)query.getSingleResult();
+        List<T> list = query.getResultList();
+        if(list.size() == 0)
+            return null;
+        return list.get(0);
     }
 
     private void executeUpdate(Query query, Map<String, Object> params){

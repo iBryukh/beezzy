@@ -2,6 +2,9 @@ package beezzy.services;
 
 import beezzy.domain.entities.UserEntity;
 import beezzy.domain.request.user.UserAuth;
+import beezzy.exceptions.ForbiddenException;
+import beezzy.exceptions.WrongEmailException;
+import beezzy.exceptions.WrongPasswordException;
 
 import java.util.*;
 
@@ -18,5 +21,5 @@ public interface UserService {
 
     UserEntity getAuthorised();
 
-    Map<String, Object> signin(UserAuth userAuth);
+    Map<String, Object> signin(UserAuth userAuth) throws WrongPasswordException, WrongEmailException;
 }
