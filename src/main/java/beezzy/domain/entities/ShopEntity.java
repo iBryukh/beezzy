@@ -9,7 +9,7 @@ import java.util.List;
 
 @NamedQueries({
         @NamedQuery(name = ShopEntity.GET_ALL, query = "SELECT sh FROM ShopEntity sh"),
-        @NamedQuery(name = ShopEntity.GET_BY_ID, query = "SELECT role FROM ShopEntity shop WHERE shop.id = :id"),
+        @NamedQuery(name = ShopEntity.GET_BY_ID, query = "SELECT shop FROM ShopEntity shop WHERE shop.id = :id"),
         @NamedQuery(name = ShopEntity.DELETE_BY_ID, query = "DELETE FROM ShopEntity shop WHERE shop.id = :id")
 })
 @Entity
