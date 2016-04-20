@@ -13,6 +13,8 @@ public interface VarietyDao {
 
     List<VarietyEntity> get(int offset, int limit);
 
+    VarietyEntity getById(int id);
+
     public void delete(final int id);
 
 }

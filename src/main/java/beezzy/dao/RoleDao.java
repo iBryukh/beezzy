@@ -13,6 +13,8 @@ public interface RoleDao {
 
     List<RoleEntity> get(int offset, int limit);
 
+    RoleEntity getById(int id);
+
     public void delete(final int id);
 
 }

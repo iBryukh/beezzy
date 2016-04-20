@@ -13,6 +13,8 @@ public interface GoodsDao {
 
     List<GoodsEntity> get(int offset, int limit);
 
+    GoodsEntity getById(int id);
+
     public void delete(final int id);
 
 }

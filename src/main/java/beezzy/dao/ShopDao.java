@@ -13,6 +13,8 @@ public interface ShopDao {
 
     List<ShopEntity> get(int offset, int limit);
 
+    ShopEntity getById(int id);
+
     public void delete(final int id);
 
 }

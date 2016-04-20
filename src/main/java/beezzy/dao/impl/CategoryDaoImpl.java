@@ -34,6 +34,16 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
+    public CategoryEntity getById(final int id) {
+        return dao.single_executeNameQueryParams(
+                CategoryEntity.GET_BY_ID,
+                new HashMap<String, Object>(){{
+                    put("id", id);
+                }}
+        );
+    }
+
+    @Override
     public void delete(final int id) {
         dao.executeUpdateNamed(
                 CategoryEntity.DELETE_BY_ID,

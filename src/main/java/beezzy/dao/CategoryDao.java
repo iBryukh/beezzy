@@ -13,6 +13,8 @@ public interface CategoryDao {
 
     List<CategoryEntity> get(int offset, int limit);
 
+    CategoryEntity getById(int id);
+
     public void delete(final int id);
 
 }

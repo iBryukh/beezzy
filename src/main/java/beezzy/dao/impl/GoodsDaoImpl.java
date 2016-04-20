@@ -34,6 +34,16 @@ public class GoodsDaoImpl implements GoodsDao {
     }
 
     @Override
+    public GoodsEntity getById(final int id) {
+        return dao.single_executeNameQueryParams(
+                GoodsEntity.GET_BY_ID,
+                new HashMap<String, Object>(){{
+                    put("id", id);
+                }}
+        );
+    }
+
+    @Override
     public void delete(final int id) {
         dao.executeUpdateNamed(
                 GoodsEntity.DELETE_BY_ID,

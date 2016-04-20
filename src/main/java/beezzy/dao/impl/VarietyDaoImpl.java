@@ -34,6 +34,16 @@ public class VarietyDaoImpl implements VarietyDao {
     }
 
     @Override
+    public VarietyEntity getById(final int id) {
+        return dao.single_executeNameQueryParams(
+                VarietyEntity.GET_BY_ID,
+                new HashMap<String, Object>(){{
+                    put("id", id);
+                }}
+        );
+    }
+
+    @Override
     public void delete(final int id) {
         dao.executeUpdateNamed(
                 VarietyEntity.DELETE_BY_ID,

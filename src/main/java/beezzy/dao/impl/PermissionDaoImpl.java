@@ -34,6 +34,16 @@ public class PermissionDaoImpl implements PermissionDao {
     }
 
     @Override
+    public PermissionEntity getById(final int id) {
+        return dao.single_executeNameQueryParams(
+                PermissionEntity.GET_BY_ID,
+                new HashMap<String, Object>(){{
+                    put("id", id);
+                }}
+        );
+    }
+
+    @Override
     public void delete(final int id) {
         dao.executeUpdateNamed(
                 PermissionEntity.DELETE_BY_ID,
