@@ -2,9 +2,7 @@ package beezzy.controller.rest;
 
 import beezzy.domain.response.Error;
 import beezzy.domain.response.Response;
-import beezzy.exceptions.ForbiddenException;
-import beezzy.exceptions.WrongEmailException;
-import beezzy.exceptions.WrongPasswordException;
+import beezzy.exceptions.*;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,7 +40,37 @@ public class ExceptionControllerAdvice {
         Response response = new Response();
         response.setError(buildError(
                 HttpServletResponse.SC_BAD_REQUEST,
-                "You send incorrect password"
+                "You sent incorrect password"
+        ));
+        return response;
+    }
+
+    @ExceptionHandler(WrongPasswordException.class)
+    public @ResponseBody Response exception(NoSuchUserException e){
+        Response response = new Response();
+        response.setError(buildError(
+                HttpServletResponse.SC_BAD_REQUEST,
+                e.getMessage()
+        ));
+        return response;
+    }
+
+    @ExceptionHandler(WrongPasswordException.class)
+    public @ResponseBody Response exception(PasswordsDoNotMatchException e){
+        Response response = new Response();
+        response.setError(buildError(
+                HttpServletResponse.SC_BAD_REQUEST,
+                e.getMessage()
+        ));
+        return response;
+    }
+
+    @ExceptionHandler(WrongPasswordException.class)
+    public @ResponseBody Response exception(UserAlreadyExistException e){
+        Response response = new Response();
+        response.setError(buildError(
+                HttpServletResponse.SC_BAD_REQUEST,
+                e.getMessage()
         ));
         return response;
     }

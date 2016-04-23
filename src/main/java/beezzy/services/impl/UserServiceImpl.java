@@ -3,17 +3,14 @@ package beezzy.services.impl;
 import beezzy.auth.jwt.JwtUtil;
 import beezzy.converters.BaseConverter;
 import beezzy.dao.UserDao;
+import beezzy.domain.entities.ShopEntity;
 import beezzy.domain.entities.UserEntity;
 import beezzy.domain.request.user.UserAuth;
-import beezzy.exceptions.ForbiddenException;
+import beezzy.exceptions.*;
 import beezzy.exceptions.WrongEmailException;
 import beezzy.exceptions.WrongPasswordException;
 import beezzy.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,13 +21,16 @@ import java.util.*;
  * Created by oleh on 12.02.2016.
  */
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
 
     @Autowired
     private BaseConverter<UserEntity> userConverter;
+
+    @Autowired
+    private BaseConverter<ShopEntity> shopConverter;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -50,11 +50,50 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public List<Map<String, Object>> getUserShops(int id, Set<String> fields) throws NoSuchUserException {
+        UserEntity userEntity =  userDao.getById(id);
+        if (userEntity == null)
+            throw new NoSuchUserException();
+        return shopConverter.convert(userEntity.getShops(), fields);
+    }
+
+    @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public UserEntity getByEmail(String email) {
         if (email == null || email.isEmpty())
             return null;
         return userDao.getByEmail(email);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Map<String, Object> getById(int id, Set<String> fields) throws NoSuchUserException{
+        UserEntity userEntity = userDao.getById(id);
+        if (userEntity==null)
+            throw new NoSuchUserException();
+        return userConverter.convert(userEntity, fields);
+    }
+
+    @Override
+    public Map<String, Object> putUser(UserEntity userEntity) throws UserAlreadyExistException {
+        if (null == userDao.getByEmail(userEntity.getEmail())) {
+            return userConverter.convert(userDao.merge(userEntity), new HashSet<String>(){{add("id");}});
+        } else {
+            throw new UserAlreadyExistException();
+        }
+    }
+
+    @Override
+    public boolean postUser(UserEntity userEntity, String oldPass) throws NoSuchUserException, PasswordsDoNotMatchException {
+        if (!userEntity.getPassword().equals(oldPass)) {
+            throw new PasswordsDoNotMatchException();
+        }
+        if (null != userDao.getById(userEntity.getId())) {
+            userDao.merge(userEntity);
+            return true;
+        } else {
+            throw new NoSuchUserException();
+        }
     }
 
     @Override
