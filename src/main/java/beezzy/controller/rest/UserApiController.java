@@ -85,7 +85,7 @@ public class UserApiController {
             @RequestParam(value = "active") boolean active
     ) throws NoSuchUserException, PasswordsDoNotMatchException {
         UserEntity userEntity = new UserEntity();
-        userEntity.getId();
+        userEntity.setId(id);
         userEntity.setActive(active);
         userEntity.setPassword(password);
         userEntity.setEmail(email);

@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public List<Map<String, Object>> getUserShops(int id, Set<String> fields) throws NoSuchUserException {
         UserEntity userEntity =  userDao.getById(id);
         if (userEntity == null)
@@ -75,6 +76,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public Map<String, Object> putUser(UserEntity userEntity) throws UserAlreadyExistException {
         if (null == userDao.getByEmail(userEntity.getEmail())) {
             return userConverter.convert(userDao.merge(userEntity), new HashSet<String>(){{add("id");}});
@@ -84,11 +86,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public boolean postUser(UserEntity userEntity, String oldPass) throws NoSuchUserException, PasswordsDoNotMatchException {
         if (!userEntity.getPassword().equals(oldPass)) {
             throw new PasswordsDoNotMatchException();
         }
-        if (null != userDao.getById(userEntity.getId())) {
+        if (userDao.getById(userEntity.getId()) != null) {
             userDao.merge(userEntity);
             return true;
         } else {

@@ -45,7 +45,7 @@ public class ExceptionControllerAdvice {
         return response;
     }
 
-    @ExceptionHandler(WrongPasswordException.class)
+    @ExceptionHandler(NoSuchUserException.class)
     public @ResponseBody Response exception(NoSuchUserException e){
         Response response = new Response();
         response.setError(buildError(
@@ -55,7 +55,7 @@ public class ExceptionControllerAdvice {
         return response;
     }
 
-    @ExceptionHandler(WrongPasswordException.class)
+    @ExceptionHandler(PasswordsDoNotMatchException.class)
     public @ResponseBody Response exception(PasswordsDoNotMatchException e){
         Response response = new Response();
         response.setError(buildError(
@@ -65,7 +65,7 @@ public class ExceptionControllerAdvice {
         return response;
     }
 
-    @ExceptionHandler(WrongPasswordException.class)
+    @ExceptionHandler(UserAlreadyExistException.class)
     public @ResponseBody Response exception(UserAlreadyExistException e){
         Response response = new Response();
         response.setError(buildError(
