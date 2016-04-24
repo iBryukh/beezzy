@@ -83,4 +83,14 @@ public class ExceptionControllerAdvice {
         return error;
     }
 
+    @ExceptionHandler(NoSuchShopException.class)
+    public @ResponseBody Response exception(NoSuchShopException e){
+        Response response = new Response();
+        response.setError(buildError(
+                HttpServletResponse.SC_BAD_REQUEST,
+                e.getMessage()
+        ));
+        return response;
+    }
+
 }

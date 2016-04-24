@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -35,7 +34,7 @@ public class UserConverter extends BaseConverter<UserEntity> {
         if(fields.contains(ACTIVE))
             map.put(ACTIVE, object.isActive());
         if(fields.contains(SHOPS)){
-            map.put(SHOPS,shopConverter.convert(object.getShops(), new HashSet<String>(){{add("id");}}));
+            map.put(SHOPS,shopConverter.convert(object.getShops(), fields));
         }
 
 

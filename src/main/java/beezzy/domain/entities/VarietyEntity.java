@@ -12,6 +12,7 @@ import javax.persistence.*;
 })
 
 @Entity
+@Table(name = "VARIETY")
 public class VarietyEntity {
     public static final String GET_ALL = "VarietyEntity.GET_ALL";
     public static final String GET_BY_ID = "VarietyEntity.GET_BY_ID";

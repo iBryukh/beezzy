@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -27,7 +26,7 @@ public class CategoryConverter extends BaseConverter <CategoryEntity> {
         if (fields.contains(PARENT))
             map.put(PARENT, object.getParent().getId());
         if (fields.contains(CHILDREN))
-            map.put(CHILDREN, convert(object.getChildren(), new HashSet<String>(){{add("id");}}));
+            map.put(CHILDREN, convert(object.getChildren(), fields));
         if (fields.contains(SHOP))
             map.put(SHOP, object.getShop().getId());
 

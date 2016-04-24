@@ -4,7 +4,6 @@ import static beezzy.converters.Fields.Role.*;
 
 import beezzy.domain.entities.PermissionEntity;
 import beezzy.domain.entities.RoleEntity;
-import beezzy.domain.enums.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +25,7 @@ public class RoleConverter extends BaseConverter<RoleEntity> {
         if(fields.contains(NAME))
             map.put(NAME,object.getName());
         if(fields.contains(PERMISSIONS))
-            map.put(PERMISSIONS,permissionConverter.convert(object.getPermissions(), new HashSet<String>(){{add("id");}}));
+            map.put(PERMISSIONS,permissionConverter.convert(object.getPermissions(), fields));
 
 
             return map;

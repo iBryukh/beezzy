@@ -79,26 +79,15 @@ public class UserApiController {
     @ApiOperation(value = "create user")
     @RequestMapping(value = "/", method = RequestMethod.PUT)
     public @ResponseBody Response<Map<String, Object>> putUser(
-            @ApiParam(value = "user email", required = true)
-            @RequestParam(value = "email") String email,
-
-            @ApiParam(value = "user password", required = true)
-            @RequestParam(value = "password") String password,
-
-            @ApiParam(value = "user role(string constant)", required = true)
-            @RequestParam(value = "role") Roles role,
-
-            @ApiParam(value = "user active(boolean)", required = true)
-            @RequestParam(value = "active") boolean active
-    ) throws NoSuchUserException, UserAlreadyExistException {
+            @ApiParam(value = "user json body")
+            @RequestBody UserView userView) throws NoSuchUserException, UserAlreadyExistException {
         UserEntity userEntity = new UserEntity();
-        userEntity.setActive(active);
-        userEntity.setPassword(password);
-        userEntity.setEmail(email);
-        // TODO
+        userEntity.setActive(userView.isActive());
+        userEntity.setPassword(userView.getPassword());
+        userEntity.setEmail(userView.getEmail());
         RoleEntity roleEntity = new RoleEntity();
-        roleEntity.setName(role);
-        userEntity.setRole(roleEntity);
+        roleEntity.setName(userView.getRole());
+        // TODO userEntity.setRole(roleEntity);
         Response<Map<String, Object>> response = new Response<Map<String, Object>>();
         response.setResult(userService.putUser(userEntity));
         return response;
@@ -111,13 +100,13 @@ public class UserApiController {
             @ApiParam(value = "user json body")
             @RequestBody UserView userView) throws NoSuchUserException, PasswordsDoNotMatchException {
         UserEntity userEntity = new UserEntity();
-        userEntity.setId(userEntity.getId());
+        userEntity.setId(userView.getId());
         userEntity.setActive(userView.isActive());
         userEntity.setPassword(userEntity.getPassword());
         userEntity.setEmail(userView.getEmail());
         RoleEntity roleEntity = new RoleEntity();
         roleEntity.setName(userView.getRole());
-        userEntity.setRole(roleEntity);
+        // TODO userEntity.setRole(roleEntity);
         userService.postUser(userEntity, userView.getOldPassword());
         Response<Boolean> response = new Response<Boolean>();
         response.setResult(new Boolean(true));

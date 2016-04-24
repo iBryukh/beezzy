@@ -10,7 +10,6 @@ package beezzy.converters.impl;
         import static beezzy.converters.Fields.Goods.*;
 
         import java.util.HashMap;
-        import java.util.HashSet;
         import java.util.Map;
         import java.util.Set;
 
@@ -38,7 +37,7 @@ public class GoodsConverter extends BaseConverter<GoodsEntity> {
         if (fields.contains(DESCRIPTION))
             map.put(DESCRIPTION, object.getDescription());
         if (fields.contains(VARIETIES))
-            map.put(VARIETIES, varietyConverter.convert(object.getVarieties(), new HashSet<String>(){{add("id");}}));
+            map.put(VARIETIES, varietyConverter.convert(object.getVarieties(), fields));
 
 
         return map;
