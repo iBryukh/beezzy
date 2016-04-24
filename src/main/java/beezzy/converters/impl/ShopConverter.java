@@ -23,6 +23,7 @@ public class ShopConverter extends BaseConverter<ShopEntity>{
 
     @Autowired
     private  BaseConverter<GoodsEntity> goodsConverter ;
+
     public Map<String, Object> convert(ShopEntity object, Set fields) {
         Map<String, Object> map = new HashMap<String, Object>();
         if(fields.contains(ID))
