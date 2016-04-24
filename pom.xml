@@ -12,7 +12,7 @@
         <spring.version>4.0.0.RELEASE</spring.version>
         <database.url>jdbc:mysql://localhost:3306</database.url>
         <database.user>root</database.user>
-        <database.pass>b)xm4?f7!lH#</database.pass>
+        <database.pass>root</database.pass>
         <database.schema>beezzy</database.schema>
     </properties>
 

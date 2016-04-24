@@ -1,12 +1,9 @@
 package beezzy.services.impl;
 
-import beezzy.auth.jwt.JwtUtil;
 import beezzy.converters.BaseConverter;
 import beezzy.dao.ShopDao;
 import beezzy.domain.entities.GoodsEntity;
 import beezzy.domain.entities.ShopEntity;
-import beezzy.domain.entities.UserEntity;
-import beezzy.domain.request.shop.ShopAuth;
 import beezzy.exceptions.*;
 import beezzy.services.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
 import java.util.*;
 
 @Service
@@ -28,9 +24,6 @@ public class ShopServiceImpl implements ShopService {
 
     @Autowired
     private BaseConverter<GoodsEntity> goodsConverter;
-
-    @Autowired
-    private JwtUtil jwtUtil;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
@@ -68,9 +61,9 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public boolean deleteShop(ShopEntity shopEntity) throws NoSuchShopException{
-        if (shopDao.getById(shopEntity.getId()) != null) {
-            shopDao.delete(shopEntity.getId());
+    public boolean deleteShop(int id) throws NoSuchShopException{
+        if (shopDao.getById(id) != null) {
+            shopDao.delete(id);
             return true;
         } else {
             throw new NoSuchShopException();
