@@ -12,6 +12,7 @@ import java.util.List;
         @NamedQuery(name = GoodsEntity.GET_BY_ID, query = "SELECT goods FROM GoodsEntity goods WHERE goods.id = :id"),
         @NamedQuery(name = GoodsEntity.DELETE_BY_ID, query = "DELETE FROM GoodsEntity goods WHERE goods.id = :id")
 })
+@Table(name = "GOODS")
 public class GoodsEntity {
 
     public static final String GET_ALL = "GoodsEntity.GET_ALL";
@@ -19,7 +20,7 @@ public class GoodsEntity {
     public static final String DELETE_BY_ID = "GoodsEntity.DELETE_BY_ID";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private int id;
 

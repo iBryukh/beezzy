@@ -20,7 +20,7 @@ public class ShopEntity {
     public static final String DELETE_BY_ID = "ShopEntity.DELETE_BY_ID";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private int id;
 
