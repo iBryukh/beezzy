@@ -66,22 +66,18 @@ public class ShopApiController {
         shopEntity.setName(shopView.getName());
         shopEntity.setDescription(shopView.getDescription());
         Response<Boolean> response = new Response<Boolean>();
-        response.setResult(new Boolean(true));
+        response.setResult(new Boolean(shopService.postShop(shopEntity)));
         return response;
     }
 
     @ApiOperation(value = "delete shop")
     @Auth(required = true, roles = {Roles.owner, Roles.admin, Roles.consultant})
-    @RequestMapping(value = "/", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody Response<Boolean> deleteShop(
-            @ApiParam(value = "shop json body")
-            @RequestBody ShopView shopView) throws NoSuchShopException {
-        ShopEntity shopEntity = new ShopEntity();
-        shopEntity.setId(shopView.getId());
-        shopEntity.setName(shopView.getName());
-        shopEntity.setDescription(shopView.getDescription());
+            @ApiParam(value = "shop id")
+            @PathVariable int id) throws NoSuchShopException {
         Response<Boolean> response = new Response<Boolean>();
-        response.setResult(new Boolean(true));
+        response.setResult(new Boolean(shopService.deleteShop(id)));
         return response;
     }
 

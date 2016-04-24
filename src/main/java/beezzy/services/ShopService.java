@@ -17,7 +17,7 @@ public interface ShopService {
 
     boolean postShop(ShopEntity shopEntity) throws NoSuchShopException;
 
-    boolean deleteShop(ShopEntity shopEntity) throws NoSuchShopException;
+    boolean deleteShop(int id) throws NoSuchShopException;
 
     List<Map<String, Object>> getShopGoods(int id, Set<String> fields) throws NoSuchShopException;
 
