@@ -1,10 +1,8 @@
 package beezzy.services;
 
 import beezzy.domain.entities.ShopEntity;
-import beezzy.domain.request.shop.ShopAuth;
 import beezzy.exceptions.*;
 
-import java.io.IOException;
 import java.util.*;
 
 public interface ShopService {

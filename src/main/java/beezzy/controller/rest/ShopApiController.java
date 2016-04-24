@@ -1,10 +1,8 @@
 package beezzy.controller.rest;
 
 import beezzy.auth.aop.Auth;
-import beezzy.domain.entities.RoleEntity;
 import beezzy.domain.entities.ShopEntity;
 import beezzy.domain.enums.Roles;
-import beezzy.domain.request.shop.ShopAuth;
 import beezzy.domain.request.shop.ShopView;
 import beezzy.domain.response.Response;
 import beezzy.exceptions.*;
@@ -16,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 

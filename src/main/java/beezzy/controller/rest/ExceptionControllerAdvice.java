@@ -93,4 +93,34 @@ public class ExceptionControllerAdvice {
         return response;
     }
 
+    @ExceptionHandler(NoSuchGoodsException.class)
+    public @ResponseBody Response exception(NoSuchGoodsException e){
+        Response response = new Response();
+        response.setError(buildError(
+                HttpServletResponse.SC_BAD_REQUEST,
+                e.getMessage()
+        ));
+        return response;
+    }
+
+    @ExceptionHandler(NoSuchVarietiesException.class)
+    public @ResponseBody Response exception(NoSuchVarietiesException e){
+        Response response = new Response();
+        response.setError(buildError(
+                HttpServletResponse.SC_BAD_REQUEST,
+                e.getMessage()
+        ));
+        return response;
+    }
+
+    @ExceptionHandler(NoSuchCategoryException.class)
+    public @ResponseBody Response exception(NoSuchCategoryException e){
+        Response response = new Response();
+        response.setError(buildError(
+                HttpServletResponse.SC_BAD_REQUEST,
+                e.getMessage()
+        ));
+        return response;
+    }
+
 }

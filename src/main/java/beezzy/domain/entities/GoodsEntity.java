@@ -69,9 +69,7 @@ public class GoodsEntity {
         return category;
     }
 
-    public void setCategory(CategoryEntity category) {
-        this.category = category;
-    }
+    public void setCategory(CategoryEntity category) { this.category = category; }
 
     public ShopEntity getShop() {
         return shop;
@@ -88,4 +86,5 @@ public class GoodsEntity {
     public void setVarieties(List<VarietyEntity> varieties) {
         this.varieties = varieties;
     }
+
 }
