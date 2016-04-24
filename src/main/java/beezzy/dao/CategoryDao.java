@@ -11,6 +11,8 @@ public interface CategoryDao {
 
     CategoryEntity merge(CategoryEntity category);
 
+    List<CategoryEntity> getByShop(int shopId, boolean root, int offset, int limit);
+
     List<CategoryEntity> get(int offset, int limit);
 
     CategoryEntity getById(int id);

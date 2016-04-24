@@ -24,6 +24,18 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
+    public List<CategoryEntity> getByShop(final int shopId, boolean root, int offset, int limit) {
+        return dao.list_executeNamedQueryParams(
+                root ? CategoryEntity.GET_BY_SHOP_ROOT : CategoryEntity.GET_BY_SHOP,
+                new HashMap<String, Object>(){{
+                    put("id", shopId);
+                }},
+                offset,
+                limit
+        );
+    }
+
+    @Override
     public List<CategoryEntity> get(int offset, int limit) {
         return dao.list_executeNamedQueryParams(
                 CategoryEntity.GET_ALL,

@@ -25,9 +25,6 @@ public class GoodsApiController {
     @Autowired
     private GoodService goodService;
 
-    @Autowired
-    private GoodsEntity goodEntity;
-
 
     @ApiOperation(value = "get good by id")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

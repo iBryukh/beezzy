@@ -29,9 +29,6 @@ public class VarietyApiController {
     @Autowired
     private VarietyService varietyService;
 
-    @Autowired
-    private VarietyEntity varietyEntity;
-
 
     @ApiOperation(value = "get varieties by id")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

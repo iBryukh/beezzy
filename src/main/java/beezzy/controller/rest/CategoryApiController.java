@@ -25,9 +25,6 @@ public class CategoryApiController {
     @Autowired
     private CategoryService categoryService;
 
-    @Autowired
-    private CategoryEntity categoryEntity;
-
 
     @ApiOperation(value = "get category by id")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

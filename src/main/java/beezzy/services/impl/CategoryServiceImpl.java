@@ -2,9 +2,12 @@ package beezzy.services.impl;
 
 import beezzy.converters.BaseConverter;
 import beezzy.dao.CategoryDao;
+import beezzy.dao.ShopDao;
 import beezzy.domain.entities.CategoryEntity;
+import beezzy.domain.entities.ShopEntity;
 import beezzy.domain.request.category.CategoryView;
 import beezzy.exceptions.NoSuchCategoryException;
+import beezzy.exceptions.NoSuchShopException;
 import beezzy.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -20,6 +24,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private CategoryDao categoryDao;
+
+    @Autowired
+    private ShopDao shopDao;
 
     @Autowired
     private BaseConverter<CategoryEntity> categoryConverter;
@@ -74,6 +81,14 @@ public class CategoryServiceImpl implements CategoryService {
         } else {
             throw new NoSuchCategoryException();
         }
+    }
+
+    @Override
+    public List<Map<String, Object>> getByShop(int shopId, boolean root, Set<String> fileds, int offset, int limit) throws NoSuchShopException {
+        ShopEntity shopEntity = shopDao.getById(shopId);
+        if (shopEntity==null)
+            throw new NoSuchShopException();
+        return categoryConverter.convert(categoryDao.getByShop(shopId, root, offset, limit), fileds);
     }
 
 }

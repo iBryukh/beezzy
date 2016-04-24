@@ -1,6 +1,7 @@
 package beezzy.controller.rest;
 
 import beezzy.auth.aop.Auth;
+import beezzy.dao.CategoryDao;
 import beezzy.domain.entities.RoleEntity;
 import beezzy.domain.entities.UserEntity;
 import beezzy.domain.enums.Roles;
@@ -31,6 +32,9 @@ public class UserApiController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    CategoryDao categoryDao;
+
     @ApiOperation("get users with params")
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public @ResponseBody Response<List<Map<String, Object>>> getUsers(
@@ -45,6 +49,7 @@ public class UserApiController {
     ){
         Response<List<Map<String, Object>>> response = new Response<List<Map<String, Object>>>();
         response.setResult(userService.get(fields, offset, limit));
+        categoryDao.getByShop(1, true, 0, 100);
         return response;
     }
 

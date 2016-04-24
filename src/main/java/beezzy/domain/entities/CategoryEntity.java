@@ -10,11 +10,13 @@ import java.util.List;
 @Table(name = "CATEGORY")
 @NamedQueries({
         @NamedQuery(name = CategoryEntity.GET_BY_SHOP, query = "SELECT category FROM CategoryEntity category WHERE category.shop.id = :id"),
+        @NamedQuery(name = CategoryEntity.GET_BY_SHOP_ROOT, query = "SELECT category FROM CategoryEntity category WHERE category.shop.id = :id AND category.parent.id=0"),
         @NamedQuery(name = CategoryEntity.GET_ALL, query = "SELECT c FROM CategoryEntity c"),
         @NamedQuery(name = CategoryEntity.GET_BY_ID, query = "SELECT category FROM CategoryEntity category WHERE category.id = :id"),
         @NamedQuery(name = CategoryEntity.DELETE_BY_ID, query = "DELETE FROM CategoryEntity category WHERE category.id = :id")
 })
 public class CategoryEntity {
+    public static final String GET_BY_SHOP_ROOT = "CategoryEntity.GET_BY_SHOP_ROOT";
     public static final String GET_BY_SHOP = "CategoryEntity.GET_BY_SHOP";
     public static final String GET_ALL = "CategoryEntity.GET_ALL";
     public static final String GET_BY_ID = "CategoryEntity.GET_BY_ID";

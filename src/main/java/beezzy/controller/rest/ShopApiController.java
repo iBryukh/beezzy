@@ -6,6 +6,7 @@ import beezzy.domain.enums.Roles;
 import beezzy.domain.request.shop.ShopView;
 import beezzy.domain.response.Response;
 import beezzy.exceptions.*;
+import beezzy.services.CategoryService;
 import beezzy.services.ShopService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -24,6 +26,9 @@ public class ShopApiController {
 
     @Autowired
     private ShopService shopService;
+
+    @Autowired
+    private CategoryService categoryService;
 
     @ApiOperation(value = "get shop by id")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -36,6 +41,25 @@ public class ShopApiController {
     ) throws NoSuchShopException {
         Response<Map<String, Object>> response = new Response<Map<String, Object>>();
         response.setResult(shopService.getById(id, fields));
+        return response;
+    }
+
+    @ApiOperation(value = "get shop's categories")
+    @RequestMapping(value = "/{id}/categories/", method = RequestMethod.GET)
+    public @ResponseBody Response<List<Map<String, Object>>> getCategoryByShop(
+            @ApiParam(value = "shop id", required = true)
+            @PathVariable(value = "id") int id,
+            @ApiParam(value = "root", defaultValue = "true", required = false)
+            @RequestParam(value = "root", required = false, defaultValue = "true") boolean root,
+            @ApiParam(value = "fields", defaultValue = "id, name, parent_id", required = false)
+            @RequestParam(value = "fields", required = false, defaultValue = "id, name, parent_id") Set<String> fields,
+            @ApiParam(value = "offset", defaultValue = "0", required = false)
+            @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
+            @ApiParam(value = "limit", defaultValue = "10", required = false)
+            @RequestParam(value = "limit", required = false, defaultValue = "10") int limit
+    ) throws NoSuchShopException {
+        Response<List<Map<String, Object>>> response = new Response<List<Map<String, Object>>>();
+        response.setResult(categoryService.getByShop(id, root, fields, offset, limit));
         return response;
     }
 
