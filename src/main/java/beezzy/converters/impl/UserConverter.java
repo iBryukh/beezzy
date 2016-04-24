@@ -2,7 +2,10 @@ package beezzy.converters.impl;
 
 import beezzy.converters.BaseConverter;
 import static beezzy.converters.Fields.User.*;
+
+import beezzy.domain.entities.ShopEntity;
 import beezzy.domain.entities.UserEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
@@ -17,7 +20,8 @@ import java.util.Set;
 @Component
 public class UserConverter extends BaseConverter<UserEntity> {
 
-    @Override
+    @Autowired
+    private  BaseConverter<ShopEntity> shopConverter ;
     public Map<String, Object> convert(UserEntity object, Set<String> fields) {
         Map<String, Object> map = new HashMap<String, Object>();
 
@@ -30,8 +34,9 @@ public class UserConverter extends BaseConverter<UserEntity> {
         if(fields.contains(ACTIVE))
             map.put(ACTIVE, object.isActive());
         if(fields.contains(SHOPS)){
-            //shops converter here
+            map.put(SHOPS,shopConverter.convert(object.getShops(), fields));
         }
+
 
         return map;
     }

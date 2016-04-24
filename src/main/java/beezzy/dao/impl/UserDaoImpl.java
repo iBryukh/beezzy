@@ -43,5 +43,25 @@ public class UserDaoImpl implements UserDao {
         );
     }
 
+    @Override
+    public UserEntity getById(final int id) {
+        return dao.single_executeNameQueryParams(
+                UserEntity.GET_BY_ID,
+                new HashMap<String, Object>(){{
+                    put("id", id);
+                }}
+        );
+    }
+
+    @Override
+    public void delete(final int id) {
+        dao.executeUpdateNamed(
+                UserEntity.DELETE_BY_ID,
+                new HashMap<String, Object>(){{
+                    put("id", id);
+                }}
+        );
+    }
+
 
 }

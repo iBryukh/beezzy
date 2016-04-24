@@ -9,6 +9,9 @@
         <class>beezzy.domain.entities.CategoryEntity</class>
         <class>beezzy.domain.entities.ShopEntity</class>
         <class>beezzy.domain.entities.GoodsEntity</class>
+        <class>beezzy.domain.entities.PermissionEntity</class>
+        <class>beezzy.domain.entities.RoleEntity</class>
+        <class>beezzy.domain.entities.UserEntity</class>
 
     </persistence-unit>
 

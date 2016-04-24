@@ -20,4 +20,9 @@ public class IndexController {
         return "register";
     }
 
+    @RequestMapping("/test")
+    public String test(){
+        return "test";
+    }
+
 }

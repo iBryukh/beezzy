@@ -13,6 +13,10 @@ public interface UserDao {
 
     List<UserEntity> get(int offset, int limit);
 
+    UserEntity getById(int id);
+
     UserEntity getByEmail(String email);
+
+    public void delete(final int id);
 
 }
