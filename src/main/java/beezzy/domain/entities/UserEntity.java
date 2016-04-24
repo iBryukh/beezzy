@@ -22,7 +22,7 @@ public class UserEntity {
     public static final String DELETE_BY_ID = "UserEntity.DELETE_BY_ID";
 
     @Id
-    @GeneratedValue
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private int id;
 

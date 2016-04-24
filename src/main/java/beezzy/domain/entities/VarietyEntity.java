@@ -18,7 +18,7 @@ public class VarietyEntity {
     public static final String DELETE_BY_ID = "VarietyEntity.DELETE_BY_ID";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private int id;
 

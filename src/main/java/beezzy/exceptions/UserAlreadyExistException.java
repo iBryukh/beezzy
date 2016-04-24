@@ -13,6 +13,6 @@ public class UserAlreadyExistException extends Exception {
         super(message);
     }
 
-    private static final String DEFAULT_MESSAGE = "You should authorize before use this resource";
+    private static final String DEFAULT_MESSAGE = "User with same credentials is already registered";
 
 }
